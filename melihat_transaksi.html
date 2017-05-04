@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script type="text/javascript">
+	function trsPulsa() {
+		document.getElementById("tabelnya").innerHTML = "<table> <tr> <th>No.Invoice</th> <th>Nama Produk</th> <th>Tanggal</th> <th>Status</th> <th>Total Bayar</th> <th>Nominal</th> <th>Nomor</th> <th>Ulasan</th> </tr> <tr> <td>D000000001</td> <td>1/4/2016</td> <td>4/1/2016 12:00</td> <td>2</td> <td>12000</td><td>johnpeter@ymail.com</td><td>085723456255</td><td id='sudah'>ULAS</td></tr> <tr> <td>D000000002</td> <td>28/122016</td> <td>12/28/2016 12:00</td> <td>2</td> <td>12000</td><td>ryangordon@ymail.com</td><td>085723456256</td><td id='belum'>ULAS</td></tr> <tr> <td>D000000003</td> <td>27/2/2016</td> <td>2/27/2016 8:14</td> <td>2</td> <td>12000</td><td>susanangela@ymail.com</td><td>085723456257</td><td id='belum'>ULAS</td></tr> <tr> <td>D000000004</td> <td>11/11/2016</td> <td>11/11/2016 8:24</td> <td>2</td> <td>12000</td><td>codyishii@ymail.com</td><td>085723456258</td><td id='sudah'>ULAS</td></tr>";
+	}
+
+	function trsProduk() {
+		document.getElementById("tabelnya").innerHTML = "<table><tr> <th>No. Invoice</th><th>Nama Toko</th><th>Tanggal</th><th>Status</th><th>Total Bayar</th><th>Alamat Kirim</th><th>Biaya Kirim</th><th>Nomor Resi</th><th>Jasa Kirim</th><th>ULASAN</th> </tr><tr><td>V000000001</td><td>John&#39;s Sport</td><td>1/4/2016</td><td>2</td><td>1175000</td><td>Jl Perwira Utama 14, Depo 16421</td><td>13000</td><td> </td><td>JNE REG</td><td><div id='sudah'>DAFTAR PRODUK</div></td></tr><tr><td>V000000002</td><td>abalium</td><td>12/28/2016</td><td>3</td><td>1236000</td><td>Jln Lumut Hijau 311/L, Mega Cinere, Depok</td><td>17000</td><td>BDG12345679</td><td>POS PAKET KILAT</td><td><div id='belum'>DAFTAR PRODUK</div></td></tr><td>V000000003</td><td>conist</td><td>2/27/2017</td><td>4</td><td>1297000</td><td>Jl. Bango III no.4, Pondok Labu, Cilandak, Jakarta</td><td>13000</td><td> </td><td>WAHANA</td><td><div id='sudah'>DAFTAR PRODUK</div></td></tr><td>V000000004</td><td>suricious</td><td>11/11/2016</td><td>4</td><td>206000</td><td>Jl. Lembur Tengah no.14A, Depok</td><td>14000</td><td> </td><td>JNE OKE</td><td><div id='sudah'>DAFTAR PRODUK</div></td></tr></table>";
+	}
+</script>
+
+<style>
+html{
+	font-family: calibri;
+}
+.transaksi {
+    background-color: crimson;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: calibri;
+}
+
+.lihat-trs {
+    position: relative;
+    display: inline-block;
+}
+
+.content-trs {
+    display: none;
+    position: absolute;
+    background-color: ivory;
+    min-width: 160px;
+    box-shadow: 0px 5px 10px 0px gray;
+    z-index: 1;
+}
+
+.content-trs a {
+    color: crimson;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.content-trs a:hover {background-color: salmon;}
+
+.lihat-trs:hover .content-trs {
+    display: block;
+}
+
+.lihat-trs:hover .dropbtn {
+    background-color: crimson;
+    color: ivory;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px 4px 10px 4px;
+    text-align: left;
+    border-bottom: 1px solid crimson;
+}
+
+th {
+	background-color: crimson;
+	color: ivory;
+}
+
+tr:hover {
+	background-color: salmon;
+}
+
+#belum {
+	background-color: yellow;
+	text-align: center;
+	cursor: pointer;
+
+}
+
+#sudah {
+	background-color: #c4c9d1;
+	color: #5e6166;
+	text-align: center;
+}
+
+</style>
+</head>
+<body>
+
+<div class="lihat-trs">
+  <div class="transaksi">Transaksi</div>
+  <div class="content-trs">
+    <a href="#" onclick="trsProduk();">Shipped Produk</a>
+    <a href="#" onclick="trsPulsa();">Pulsa</a>
+  </div>
+</div>
+
+<p id="tabelnya">
+</p>
+
+</body>
+</html>

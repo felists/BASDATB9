@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"/></script>		
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style>
+	.panel{
+		margin-left:20px;
+		margin-right:20px;
+		padding:10px;
+	}
+	.panel-body{
+		padding:10px;
+	}
+	.navbar {
+		background-color: #4CAF50;
+		padding-top:5px;
+	}
+	.navbar-brand{
+		color:white;
+	}
+	.navbar-nav {
+		background-color: white;
+	}
+	
+	</style>
+</head>
+<body>
+	<nav class="navbar">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Tokokeren</a>
+			</div>
+			<ul class="nav navbar-nav nav-tabs">
+				<li class="active">
+					<a href="#none" data-toggle="tab">Home</a>
+				</li>
+				<li class="dropdown ">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Buat Baru...
+					<span class="caret"/>
+					</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="#none" data-toggle="tab">Kategori</a>
+						</li>
+						<li>
+							<a href="#jasa" data-toggle="tab">Jasa Kirim</a>
+						</li>
+						<li>
+							<a href="#promo" data-toggle="tab">Promo</a>
+						</li>
+						<li>
+							<a href="#ulasan" data-toggle="tab">Ulasan</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			
+		</div>
+	</nav>
+	<div class="tab-content">
+		<div id="jasa" class="tab-pane fade ">
+			<div class="panel panel-default">
+				<div class="panel-heading">Buat Jasa Kirim Baru</div>
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="nama">Nama Jasa Kirim</label>
+							<div class="col-sm-10 input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicons-shop"></i></span>
+								<input type="text" class="form-control" id="nama" placeholder="Nama" maxlength="100">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="lama">Lama Kirim</label>
+							<div class="col-sm-10 input-group"> 
+								<span class="input-group-addon"><i class="glyphicon glyphicon-clock"></i></span>
+								<input type="text" class="form-control" id="lama" placeholder="a - a" maxlength="10">
+							</div>
+						</div>
+						<div class="form-group"> 
+							<label class="control-label col-sm-2" for="tarif">Tarif Pengiriman</label>
+							<div class="col-sm-10 input-group"> 
+								<span class="input-group-addon"><i class="glyphicon glyphicon-coins"></i></span>
+								<input type="number" class="form-control" id="tarif" placeholder="(Rp)iiiiiiiiii.ii" min="1" max="9999999999" step="0.01" maxlength="10">
+							</div>
+						</div>
+						<div class="form-group"> 
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-default">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="promo" class="tab-pane fade ">
+			<div class="panel panel-default">
+				<div class="panel-heading">Buat Promo Baru</div>
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="awal">Periode Awal Promo</label>
+							<div class="col-sm-10 input-group"> 
+								 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+								<input type="date" class="form-control" id="awal" placeholder="awal">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="akhir">Periode Akhir Promo</label>
+							<div class="col-sm-10 input-group">
+								 <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+								<input type="date" class="form-control" id="akhir" placeholder="akhir">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="kode">Kode Promo</label>
+							<div class="col-sm-10 input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
+								<input type="text" class="form-control" id="kode" placeholder="kode" maxlength="20">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="kategori">Kategori Produk</label>
+							<div class="col-sm-10 input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+								<select class="form-control" id="kategori"> 
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="subkategori">Sub Kategori Produk</label>
+							<div class="col-sm-10 input-group">
+								<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+								<select class="form-control" id="subkategori">
+									<option>1</option>
+									<option>2</option>
+									<option>3</option>
+									<option>4</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="deskripsi">Deskripsi Promo</label>
+							<div class="col-sm-10">
+								<textarea class="form-control" id="deskripsi" placeholder="deskripsi" rows="4"></textarea>
+							</div>
+						</div>
+						<div class="form-group"> 
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-default">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="ulasan" class="tab-pane fade ">
+			<div class="panel panel-default">
+				<div class="panel-heading">Buat Ulasan</div>
+				<div class="panel-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="produk">Kode Produk</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="produk" placeholder="Produk" disabled>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="rating">Rating:</label>
+							<div class="col-sm-10"> 
+								<input type="number" class="form-control" id="rating" placeholder="rating" min="0" max="5" step="1" maxlength="1">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="komentar">Komentar</label>
+							<div class="col-sm-10">
+								<textarea class="form-control" id="komentar" placeholder="komentar anda..." rows="4"></textarea>
+							</div>
+						</div>
+						<div class="form-group"> 
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-default">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="none" class="tab-pane fade in active">
+			<ul class="pagination">
+				<li>
+					<a href="#">1</a>
+				</li>
+				<li class="active">
+					<a href="#">2</a>
+				</li>
+				<li>
+					<a href="#">3</a>
+				</li>
+				<li>
+					<a href="#">4</a>
+				</li>
+				<li>
+					<a href="#">5</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
+			

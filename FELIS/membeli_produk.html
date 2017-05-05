@@ -1,0 +1,98 @@
+<html>
+<head><title>Membeli Produk</title></head>
+<body>
+<style>
+html{
+	font-family: calibri;
+}
+.transaksi {
+    background-color: crimson;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: calibri;
+}
+
+.lihat-trs {
+    position: relative;
+    display: inline-block;
+}
+
+.content-trs {
+    display: none;
+    position: absolute;
+    background-color: ivory;
+    min-width: 160px;
+    box-shadow: 0px 5px 10px 0px gray;
+    z-index: 1;
+}
+
+.content-trs a {
+    color: crimson;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.content-trs a:hover {background-color: salmon;}
+
+.lihat-trs:hover .content-trs {
+    display: block;
+}
+
+.lihat-trs:hover .dropbtn {
+    background-color: crimson;
+    color: ivory;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px 4px 10px 4px;
+    text-align: left;
+    border-bottom: 1px solid crimson;
+}
+
+th {
+	background-color: crimson;
+	color: ivory;
+}
+
+tr:hover {
+	background-color: salmon;
+}
+
+#belum {
+	background-color: yellow;
+	text-align: center;
+	cursor: pointer;
+
+}
+
+#sudah {
+	background-color: #c4c9d1;
+	color: #5e6166;
+	text-align: center;
+}
+
+</style>
+</head>
+<body>
+
+<div class="lihat-trs">
+  <div class="transaksi">Transaksi</div>
+  <div class="content-trs">
+    <a href="#" onclick="trsProduk();">Shipped Produk</a>
+    <a href="#" onclick="trsPulsa();">Pulsa</a>
+  </div>
+</div>
+
+<p id="tabelnya">
+</p>
+
+</body>
+</html>

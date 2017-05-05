@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "LOVELO";
+    src: url("../dll/lovelo_bold.otf");
+}
+@font-face {
+    font-family: "LOVELO";
+    src: url("../dll/lovelo_bold.ttf");
+    font-weight: bold;
+}
+
+#logo {
+	font-family: LOVELO;
+	font-size: 40px;
+}

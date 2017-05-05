@@ -2,12 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Twitter Bootstrap shopping cart</title>
+    <title>::TokoKeren::</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Bootstrap styles -->
     <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <link href="assets/css/transaksi.css" rel="stylesheet"/>
     <!-- Customize styles -->
     <link href="style.css" rel="stylesheet"/>
     <!-- font awesome styles -->
@@ -37,10 +38,9 @@
 					<a href="#"><span class="icon-youtube"></span></a>
 					<a href="#"><span class="icon-tumblr"></span></a>
 				</div>
-				<a class="active" href="index.html"> <span class="icon-home"></span> Home</a> 
+				<a class="active" href="index.html"> <span class="icon-home"></span>Home</a> 
 				<a href="#"><span class="icon-user"></span> My Account</a> 
-				<a href="register.html"><span class="icon-edit"></span> Free Register </a> 
-				<a href="contact.html"><span class="icon-envelope"></span> Contact us</a>
+				<a href="register.html"><span class="icon-edit"></span> Free Register </a>
 				<a href="cart.html"><span class="icon-shopping-cart"></span> 2 Item(s) - <span class="badge badge-warning"> $448.42</span></a>
 			</div>
 		</div>
@@ -93,8 +93,23 @@ Navigation Bar Section
 		  <div class="nav-collapse">
 			<ul class="nav">
 			  <li class="active"><a href="index.html">Home	</a></li>
-			  <li class=""><a href="list-view.html">List View</a></li>
-			  <li class=""><a href="grid-view.html">Grid View</a></li>
+			  <li class="dropdown">
+		        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Belanja
+		        <span class="caret"></span></a>
+		        <ul class="dropdown-menu">
+		          <li><a href="#" onclick="belanja();">Produk</a></li>
+		          <li><a href="#" onclick="belanjaPulsa();">Pulsa</a></li>
+		        </ul>
+		      </li>
+			  <li class="dropdown">
+		        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Transaksi
+		        <span class="caret"></span></a>
+		        <ul class="dropdown-menu">
+		          <li><a href="#" onclick="trsPulsa();">Pulsa</a></li>
+		          <li><a href="#" onclick="trsProduk();">Produk</a></li>
+		        </ul>
+		      </li>
+		      
 			</ul>
 			<form action="#" class="navbar-search pull-left">
 			  <input type="text" placeholder="Search" class="search-query span2">
@@ -127,24 +142,24 @@ Navigation Bar Section
 <!-- 
 Body Section 
 -->
-	<div class="row">
-<div id="sidebar" class="span3">
-<div class="well well-small">
-	<ul class="nav nav-list">
-		<li><a href="products.html"><span class="icon-chevron-right"></span>Fashion</a></li>
-		<li><a href="products.html"><span class="icon-chevron-right"></span>Watches</a></li>
-		<li><a href="products.html"><span class="icon-chevron-right"></span>Fine Jewelry</a></li>
-		<li><a href="products.html"><span class="icon-chevron-right"></span>Fashion Jewelry</a></li>
-		<li><a href="products.html"><span class="icon-chevron-right"></span>Engagement & Wedding</a></li>
-		<li><a href="products.html"><span class="icon-chevron-right"></span>Men's Jewelry</a></li>
-		<li><a href="products.html"><span class="icon-chevron-right"></span>Vintage & Antique</a></li>
-		<li><a href="products.html"><span class="icon-chevron-right"></span>Loose Diamonds </a></li>
-		<li><a href="products.html"><span class="icon-chevron-right"></span>Loose Beads</a></li>
-		<li><a href="products.html"><span class="icon-chevron-right"></span>See All Jewelry & Watches</a></li>
-		<li style="border:0"> &nbsp;</li>
-		<li> <a class="totalInCart" href="cart.html"><strong>Total Amount  <span class="badge badge-warning pull-right" style="line-height:18px;">$448.42</span></strong></a></li>
-	</ul>
-</div>
+<div class="row"  id="tabelnya">
+	<div id="sidebar" class="span3">
+		<div class="well well-small">
+			<ul class="nav nav-list">
+				<li><a href="products.html"><span class="icon-chevron-right"></span>Fashion</a></li>
+				<li><a href="products.html"><span class="icon-chevron-right"></span>Watches</a></li>
+				<li><a href="products.html"><span class="icon-chevron-right"></span>Fine Jewelry</a></li>
+				<li><a href="products.html"><span class="icon-chevron-right"></span>Fashion Jewelry</a></li>
+				<li><a href="products.html"><span class="icon-chevron-right"></span>Engagement & Wedding</a></li>
+				<li><a href="products.html"><span class="icon-chevron-right"></span>Men's Jewelry</a></li>
+				<li><a href="products.html"><span class="icon-chevron-right"></span>Vintage & Antique</a></li>
+				<li><a href="products.html"><span class="icon-chevron-right"></span>Loose Diamonds </a></li>
+				<li><a href="products.html"><span class="icon-chevron-right"></span>Loose Beads</a></li>
+				<li><a href="products.html"><span class="icon-chevron-right"></span>See All Jewelry & Watches</a></li>
+				<li style="border:0"> &nbsp;</li>
+				<li> <a class="totalInCart" href="cart.html"><strong>Total Amount  <span class="badge badge-warning pull-right" style="line-height:18px;">$448.42</span></strong></a></li>
+			</ul>
+		</div>
 
 			  <div class="well well-small alert alert-warning cntr">
 				  <h2>50% Discount</h2>
@@ -190,36 +205,36 @@ Body Section
 		  </ul>
 
 	</div>
-	<div class="span9">
+	<div class="span9" id="badan">
 	<div class="well np">
 		<div id="myCarousel" class="carousel slide homCar">
             <div class="carousel-inner">
 			  <div class="item">
                 <img style="width:100%" src="assets/img/bootstrap_free-ecommerce.png" alt="bootstrap ecommerce templates">
                 <div class="carousel-caption">
-                      <h4>Bootstrap shopping cart</h4>
-                      <p><span>Very clean simple to use</span></p>
+                      <h4>::hanya ada di TokoKeren::</h4>
+                      <p><span>Cara mudah, Belanja murah</span></p>
                 </div>
               </div>
 			  <div class="item">
                 <img style="width:100%" src="assets/img/carousel1.png" alt="bootstrap ecommerce templates">
                 <div class="carousel-caption">
-                      <h4>Bootstrap Ecommerce template</h4>
-                      <p><span>Highly Google seo friendly</span></p>
+                      <h4>Beli JAM 50%OFF</h4>
+                      <p><span>Bagi pelanggan setia kartu kredit BCdiri</span></p>
                 </div>
               </div>
 			  <div class="item active">
                 <img style="width:100%" src="assets/img/carousel3.png" alt="bootstrap ecommerce templates">
                 <div class="carousel-caption">
-                      <h4>Twitter Bootstrap cart</h4>
-                      <p><span>Very easy to integrate and expand.</span></p>
+                      <h4>Belanja Online tapi tak sampai?</h4>
+                      <p><span>Makanya belanja di TokoKeren</span></p>
                 </div>
               </div>
               <div class="item">
                 <img style="width:100%" src="assets/img/bootstrap-templates.png" alt="bootstrap templates">
                 <div class="carousel-caption">
-                      <h4>Bootstrap templates integration</h4>
-                      <p><span>Compitable to many more opensource cart</span></p>
+                      <h4>Valentine Kasih bunga?</h4>
+                      <p><span>Belikan pasanganmu koleksi perhiasan romantis terbaru disini</span></p>
                 </div>
               </div>
             </div>
@@ -507,5 +522,6 @@ accompanied by English versions from the 1914 translation by H. Rackham.
 	<script src="assets/js/jquery.easing-1.3.min.js"></script>
     <script src="assets/js/jquery.scrollTo-1.4.3.1-min.js"></script>
     <script src="assets/js/shop.js"></script>
+    <script src="assets/js/transaksi.js"></script>
   </body>
 </html>

@@ -1,16 +1,48 @@
-<?php
-    session_start();
-?>
 <!DOCTYPE html>
 <html>
-
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script type="text/javascript">
 	
+<script type="text/javascript">
+$(document).ready(function(){
+
+var login = {'admin':'false','username':'hello'};
+sessionStorage.setItem('login', JSON.stringify(login));
+			if(sessionStorage.getItem("login") != null) {
+			var login = JSON.parse(sessionStorage.getItem("login"));
+			if(login.admin=='true') {
+			$("#logstatenav").html($("#loggedInAdmin").html());
+			}else if(login.admin=='false'){
+			$("#logstatenav").html($("#loggedInNotAdmin").html());
+			}}else if(sessionStorage.getItem("login") === null){
+			$("#logstatenav").html($("#loggedOut").html());
+			}
+						
+			
+$(".pagination-shipped").click(function(){
+	showPage($(this).html(),'pagination-shipped');
+});
+
+
+$(".pagination-pulsa").click(function(){
+    showPage($(this).html(),'pagination-pulsa');
+
+});
+function initPseudoDB(){
 	
-	</script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"/></script>		
+}
+function showPage(int,tag){
+	switch(tag){
+	case pagination-shipped:
+	break;
+	case pagination-pulsa:
+		
+		
+	}
+}
+});
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"/></script>		
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<style>
 	.panel{
@@ -130,69 +162,13 @@ tr:hover {
 	</style>
 </head>
 <body>	
-<?php
-$_SESSION['ADMIN'] = 'FALSE';
-?>
+	
 	<nav class="navbar">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">Tokokeren</a>
-				<span><?echo $_SESSION['ADMIN']?></span>
+				<a class="navbar-brand" href="#">Tokokeren</a>	
 			</div>
-			<?php if (isset($_SESSION['ADMIN'])){?>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#"><span class="glyphicon glyphicon-user"></span> Welcome, username</a></li>
-				<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-			</ul>
-			<ul class="nav navbar-nav nav-tabs">
-				
-				<li class="active">
-					<a href="#home" data-toggle="tab">Home</a>
-				</li>
-				<?php if ($_SESSION['ADMIN'] == 'TRUE'){?>
-					
-				<li class="dropdown ">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Buat Baru...
-					<span class="caret"/>
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="#jasa" data-toggle="tab">Kategori</a>
-						</li>
-						<li>
-							<a href="#jasa" data-toggle="tab">Jasa Kirim</a>
-						</li>
-						<li>
-							<a href="#promo" data-toggle="tab">Promo</a>
-						</li>
-					</ul>
-						
-				</li>
-					
-				<?php }else{?>
-					<li class="dropdown ">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Lihat Transaksi...
-					<span class="caret"/>
-					</a>
-					<ul class="dropdown-menu">
-						<li>
-							<a href="#shipped" data-toggle="tab">Shipable Produk</a>
-						</li>
-						<li>
-							<a href="#pulsa" data-toggle="tab">Pulsa</a>
-						</li>
-					</ul>
-						
-					</li>
-					<li>
-						<a href="#ulasan" data-toggle="tab">Ulasan</a>
-					</li>
-				<?php }}else{?>
-					 <ul class="nav navbar-nav navbar-right">
-						<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-						<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-					</ul>
-				<?php }?>		
+			<div id="logstatenav"></div>
 			</ul>	
 		</div>
 	</nav>
@@ -479,6 +455,69 @@ $_SESSION['ADMIN'] = 'FALSE';
 			</ul>
 		</div>
 		</div>
+	</div>
+	<div id="loggedInAdmin" hidden>
+	<ul class='nav navbar-nav navbar-right'>
+				<li><a href='#'><span class='glyphicon glyphicon-user'></span> Welcome, username</a></li>
+				<li><a href='#'><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>
+			</ul>
+			<ul class='nav navbar-nav nav-tabs'>
+				<li class='active'>
+					<a href='#home' data-toggle='tab'>Home</a>
+				</li>
+				<li class='dropdown'>
+					<a class='dropdown-toggle' data-toggle='dropdown' href='#'>Buat Baru...
+					<span class='caret'/>
+					</a>
+					<ul class='dropdown-menu'>
+						<li>
+							<a href='#jasa' data-toggle='tab'>Kategori</a>
+						</li>
+						<li>
+							<a href='#jasa' data-toggle='tab'>Jasa Kirim</a>
+						</li>
+						<li>
+							<a href='#promo' data-toggle='tab'>Promo</a>
+						</li>
+					</ul>
+						
+				</li>
+					
+	</div>
+	<div id="loggedInNotAdmin" hidden>
+	<ul class='nav navbar-nav navbar-right'>
+				<li><a href='#'><span class='glyphicon glyphicon-user'></span> Welcome, username</a></li>
+				<li><a href='#'><span class='glyphicon glyphicon-log-out'></span> Logout</a></li>
+			</ul>
+			<ul class='nav navbar-nav nav-tabs'>
+				<li class='active'>
+					<a href='#home' data-toggle='tab'>Home</a>
+				</li>
+				
+			<li class='dropdown '>
+					<a class='dropdown-toggle' data-toggle='dropdown' href='#'>Lihat Transaksi...
+					<span class='caret'/>
+					</a>
+					<ul class='dropdown-menu'>
+						<li>
+							<a href='#shipped' data-toggle='tab'>Shipable Produk</a>
+						</li>
+						<li>
+							<a href='#pulsa' data-toggle='tab'>Pulsa</a>
+						</li>
+					</ul>
+						
+					</li>
+					<li>
+						<a href='#ulasan' data-toggle='tab'>Ulasan</a>
+					</li>
+					
+	</div>
+	<div id="loggedOut" hidden>
+	<ul class='nav navbar-nav navbar-right'>
+						<li><a href='#'><span class='glyphicon glyphicon-user'></span> Sign Up</a></li>
+						<li><a href='#'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>
+					</ul>
 	</div>
 </body>
 </html>

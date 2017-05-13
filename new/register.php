@@ -16,10 +16,16 @@
 			$email =$_POST["email"];
 			$fullname = $_POST["name"];
 			$password = $_POST["psw"];
-			$gender = $_POST["inGender"];
+			$gender ='';
 			$bday = $POST["bday"];
 			$phone = $_POST["phone"];
 			$addr = $_POST["address"];
+			
+			if($_POST["inGender"] == "Male") {
+				$gender = "L";
+			} else {
+				$gender = "P";
+			}
 
 			$set = "SET search_path TO TOKOKEREN";
 			$result = pg_query($conn, $set);

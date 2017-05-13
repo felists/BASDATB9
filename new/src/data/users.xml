@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<users>
+	   <user id="usr101">
+		  <username>Dhila</username>
+		  <password>dhila</password>
+		  <name>Dhila Kaha</name>
+		  <email>dhila@mail.com</email>
+	   </user>
+	   <user id="usr102">
+		  <username>Felis</username>
+		  <password>felis</password>
+		  <name>Felisitas</name>
+		  <email>felis@mail.com</email>
+	   </user>
+	   <user id="usr103">
+		  <username>Kevin</username>
+		  <password>kevin</password>
+		  <name>Kevin</name>
+		  <email>kevin@mail.com</email>
+	   </user>
+</users>

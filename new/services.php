@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 function user_login($username, $password){
 	if(isset($_SESSION)){
 		echo "User already logged in";

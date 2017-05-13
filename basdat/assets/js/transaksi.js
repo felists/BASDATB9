@@ -23,7 +23,7 @@
 	}
 
 	function belanja() {
-		document.getElementById("badan").innerHTML = " <div class='dropdown'> <button class='btn btn-primary dropdown-toggle' type='button' data-toggle='dropdown'>Pilih Toko<span class='caret'></span></button>  <ul class='dropdown-menu'>    <li><a href='#'>Johns Jewerly Shop</a></li>    <li><a href='#' onclick='artoped();'>ARTOPEDIA</a></li><li><a href='#'>JavaSink & Bathroom</a></li>  </ul></div> ";
+		document.getElementById("badan").innerHTML = " <div class='dropdown'> <button class='btn btn-primary dropdown-toggle' type='button' data-toggle='dropdown'>Pilih Toko<span class='caret'></span></button>  <ul class='dropdown-menu'>    <li><a href='#'>Johns Jewerly Shop</a></li>    <li><a href='#'>ARTOPEDIA</a></li><li><a href='#'>JavaSink & Bathroom</a></li>  </ul></div> ";
 	}
 
 	function belanjaPulsa() {
@@ -43,8 +43,4 @@
 	function getKodePulsa() {		
 		document.getElementById("kodepulsa").innerHTML = localStorage.getItem('kode');
 		document.getElementById("badan").innerHTML = "<h4 id='kodepulsa'></h4>";
-	}
-
-	function artoped() {
-		window.location.href= 'cart.html';
 	}

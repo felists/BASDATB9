@@ -15,8 +15,11 @@
 	      <a class="nav-item">
 	        <h3>TokoKeren</h3>
 	      </a>
-	      <a class="nav-item is-tab is-hidden-mobile is-active">Home</a>
-	      <a class="nav-item is-tab is-hidden-mobile">Produk</a>
+	      <a class="nav-item is-tab is-hidden-mobile is-active">
+	      <span class="icon">
+			  <i class="fa fa-home"></i>
+			</span> Home</a>
+	      <a class="nav-item is-tab is-hidden-mobile" href="beli-produk.php">Produk</a>
 	      <a class="nav-item is-tab is-hidden-mobile" href="transaksi-pulsa.php">Transaksi</a>
 	    </div>
 	    <span class="nav-toggle">

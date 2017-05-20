@@ -15,8 +15,11 @@
 	      <a class="nav-item">
 	        <h3>TokoKeren</h3>
 	      </a>
-	      <a class="nav-item is-tab is-hidden-mobile" href="index.php">Home</a>
-	      <a class="nav-item is-tab is-hidden-mobile">Produk</a>
+	      <a class="nav-item is-tab is-hidden-mobile" href="index.php">
+	      <span class="icon">
+			  <i class="fa fa-home"></i>
+			</span> Home</a>
+	      <a class="nav-item is-tab is-hidden-mobile" href="index.php">Produk</a>
 	      <a class="nav-item is-tab is-hidden-mobile is-active">Transaksi</a>
 	    </div>
 	    <span class="nav-toggle">
@@ -36,7 +39,8 @@
 	    </div>
 	  </div>
 	</nav>
-	<section class="hero is-info">
+	
+	<section class="hero is-primary">
 	  <div class="hero-body">
 	  	<div class="container">
 	  		<h1 class="title">Transaksi Produk</h1>
@@ -58,52 +62,48 @@
 	      </div>
 	     </div>
 	</section>
+	<section class="section">
+			<select onchange="changePage(this.value)">
+				<option value="" class="is-active">#</option>
+				<?php
+					$db = pg_connect("host=localhost dbname=felisitas.sindiana user=felisitas.sindiana password=padmakara168")
+				    or die('Could not connect: ' . pg_last_error());
+				    pg_query('SET SEARCH_PATH TO tokokeren;');
+					$res = pg_query('SELECT count(*) from transaksi_shipped;');
+					$size = pg_fetch_result($res, 0, 0);
+					$last; if ($size%10 == 0) $last = $size/10;
+					else $last = ceil($size/10);
+					$laman = 1;
+					while ($laman <= $last) {
+						echo "<option value='$laman'>$laman</option>";
+						$laman++;
+					}
+				?>
+			</select>
+			<p id="txtHint"></p>
+	</section>
 </body>
+<script type="text/javascript">
+	function changePage(str) {
+		if (str == "") {
+	        document.getElementById("txtHint").innerHTML = "";
+	        return;
+	    } else {
+	        if (window.XMLHttpRequest) {
+	            // code for IE7+, Firefox, Chrome, Opera, Safari
+	            xmlhttp = new XMLHttpRequest();
+	        } else {
+	            // code for IE6, IE5
+	            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	        }
+	        xmlhttp.onreadystatechange = function() {
+	            if (this.readyState == 4 && this.status == 200) {
+	                document.getElementById("txtHint").innerHTML = this.responseText;
+	            }
+	        };
+	        xmlhttp.open("GET","transaksi.php?page="+str,true);
+	        xmlhttp.send();
+	    }
+	}
+</script>
 </html>
-
-
-<?php
-// Connecting, selecting database
-$dbconn = pg_connect("host=localhost dbname=felisitas.sindiana user=felisitas.sindiana password=padmakara168")
-    or die('Could not connect: ' . pg_last_error());
-
-// Performing SQL query
-pg_query('SET SEARCH_PATH TO tokokeren;');
-$query = 'SELECT no_invoice, nama_toko, tanggal, status, total_bayar, alamat_kirim, biaya_kirim, no_resi, nama_jasa_kirim FROM transaksi_shipped t';
-$result = pg_query($query) or die('Query failed: ' . pg_last_error());
-
-// Printing results in HTML
-echo "<section class='section'>\n<div class='container'><table class='table is-stripped is-narrow'>\n
-	<thead>
-		<tr>
-			<th>No.</th>
-			<th>No. Invoice</th>
-			<th>Nama Toko</th>
-			<th>Tanggal</th>
-			<th>Status</th>
-			<th>Total Bayar(Rp)</th>
-			<th>Alamat</th>
-			<th>Biaya Kirim</th>
-			<th>Nomor Resi</th>
-			<th>Jasa Kirim</th>
-			<th></th>
-		</tr>
-	</thead>
-";
-$numm = 0;
-while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
-	$numm += 1;
-    echo "\t<tr><td>$numm</td>\n";
-    foreach ($line as $col_value) {
-        echo "\t\t<td>$col_value</td>\n";
-    }
-    echo "<td><a class='button is-primary is-focused' href='produk_daftar.php'>DAFTAR PRODUK</a></td>\t</tr>\n";
-}
-echo "</table>\n</div></section>\n";
-
-// Free resultset
-pg_free_result($result);
-
-// Closing connection
-pg_close($dbconn);
-?>

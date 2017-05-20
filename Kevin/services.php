@@ -1,5 +1,14 @@
 <?php
 switch($_POST['submit']) {
+	case 'main_category':
+		get_main_category();
+	break;
+	case 'sub_category':
+		get_sub_category($_POST["main"]);
+	break;
+	case 'sub_category':
+		
+	break;
 	case 'jasa':
 		create_jasa_kirim($_POST["nama"],$_POST["lama"],$_POST["tarif"]);
 	break;
@@ -11,6 +20,40 @@ switch($_POST['submit']) {
 		create_ulasan($_POST["produk"],$_POST["rating"],$_POST["komentar"]);
 	break;
 }
+
+function get_main_category(){
+	$string = "host=localhost port=5432 dbname=postgres user=postgres password=";
+	$conn = pg_connect($string);
+	
+	$sql = "SELECT * FROM tokokeren.kategori_utama;"; 
+	$result = pg_query($conn,$sql);
+	$array = array();
+	while($row = pg_fetch_array($result)) { 
+		$array[] = $row["kode"];
+		$array[] = $row["nama"];
+	} 
+	
+	$json = json_encode($array);
+	echo $json;
+	
+}
+
+function get_sub_category($kode){
+	$string = "host=localhost port=5432 dbname=postgres user=postgres password=";
+	$conn = pg_connect($string);
+	
+	$sql = "SELECT * FROM tokokeren.sub_kategori WHERE kode_kategori = '$kode' ;"; 
+	$result = pg_query($conn,$sql);
+	$array = array();
+	while($row = pg_fetch_array($result)) { 
+		$array[] = $row["kode"];
+		$array[] = $row["nama"];
+	} 
+	
+	$json = json_encode($array);
+	echo $json;
+	
+}
 	
 function create_jasa_kirim($nama,$lama,$tarif){
 	$string = "host=localhost port=5432 dbname=postgres user=postgres password=";
@@ -19,14 +62,21 @@ function create_jasa_kirim($nama,$lama,$tarif){
 	$sql = "INSERT INTO tokokeren.jasa_kirim(nama,lama_kirim,tarif) VALUES ('$nama','$lama','$tarif')"; 
 	$result = pg_query($conn,$sql);
 	pg_close($conn);
+	header('Location:admin-jasa.php');
 }
 
 function create_promo($awal,$akhir,$kode,$kategori,$subkategori,$deskripsi){
 	$string = "host=localhost port=5432 dbname=postgres user=postgres password=";
 	$conn = pg_connect($string);
-	$sql = "INSERT INTO tokokeren.promo(periode_awal,periode_akhir,kode,deskripsi) VALUES ('$awal','$akhir','$kode','$deskripsi')"; 
+	
+	$id = substr(md5(microtime()),rand(0,26),6);
+	$sql = "INSERT INTO tokokeren.promo(id,periode_awal,periode_akhir,kode,deskripsi) VALUES ('$id','$awal','$akhir','$kode','$deskripsi')"; 
+	
 	$result = pg_query($conn,$sql);
 	pg_close($conn);
+	
+	header('Location:admin-promo.php');
+	
 
 }
 
@@ -34,8 +84,8 @@ function create_ulasan($produk,$rating,$komentar){
 	$string = "host=localhost port=5432 dbname=postgres user=postgres password=";
 	$conn = pg_connect($string);
 	$email = $_SESSION["email"];
-	$tanggal = date("Y-m-d");
-	$sql = "INSERT INTO tokokeren.ulasan(email_pembeli,kode_produk,tanggal,rating,komentar) VALUES ($_SESSION('$email','$produk','$tanggal','$rating','$komentar')"; 
+	$tanggal = date("m-d-Y");
+	$sql = "INSERT INTO tokokeren.ulasan(email_pembeli,kode_produk,tanggal,rating,komentar) VALUES ('$email','$produk','$tanggal','$rating','$komentar')"; 
 	$result = pg_query($conn,$sql);
 	pg_close($conn);
 }

@@ -1,5 +1,11 @@
 <?php
+session_start();
 switch($_POST['submit']) {
+	
+	case 'login':
+		login($_POST["email"],$_POST["password"]);
+	break;
+	
 	case 'main_category':
 		get_main_category();
 	break;
@@ -63,6 +69,15 @@ function create_jasa_kirim($nama,$lama,$tarif){
 	$result = pg_query($conn,$sql);
 	pg_close($conn);
 	header('Location:admin-jasa.php');
+	echo $result;
+	if(!$result){
+		if (preg_match('/duplicate/i', $error)){
+			echo "this value already exists";
+		}
+		else{
+			print pg_last_error($conn);
+		}
+	}
 }
 
 function create_promo($awal,$akhir,$kode,$kategori,$subkategori,$deskripsi){
@@ -73,11 +88,14 @@ function create_promo($awal,$akhir,$kode,$kategori,$subkategori,$deskripsi){
 	$sql = "INSERT INTO tokokeren.promo(id,periode_awal,periode_akhir,kode,deskripsi) VALUES ('$id','$awal','$akhir','$kode','$deskripsi')"; 
 	
 	$result = pg_query($conn,$sql);
+	
+	
 	pg_close($conn);
 	
 	header('Location:admin-promo.php');
-	
-
+	if(!result){
+		echo "error";
+	}
 }
 
 function create_ulasan($produk,$rating,$komentar){
@@ -88,44 +106,56 @@ function create_ulasan($produk,$rating,$komentar){
 	$sql = "INSERT INTO tokokeren.ulasan(email_pembeli,kode_produk,tanggal,rating,komentar) VALUES ('$email','$produk','$tanggal','$rating','$komentar')"; 
 	$result = pg_query($conn,$sql);
 	pg_close($conn);
+	header("Location:produk_daftar.php?thanks=yes");
 }
 
 
-function user_login($email, $password){
-	if(isset($_SESSION)){
-		echo "User already logged in";
-		return false;
-	}
+function login($email, $pass){
 	$string = "host=localhost port=5432 dbname=postgres user=postgres password=";
 	$conn = pg_connect($string);
-	$sql = 'SELECT email FROM pengguna WHERE pengguna.email =$email AND pengguna.password = $password';
-	$result = pg_query($conn,$sql);
-	$row = pg_fetch_row($result);
-	$num_rows = count($row);
-	if ($num_rows>0){
-		$login_email = $row[0];
-		$_SESSION["email"] = $login_email;
-		
-		$sql = 'SELECT email FROM pelanggan WHERE pelanggan.email  = $login_email';
-		$result = pg_query($conn,$sql);
-		$row = pg_fetch_row($result);
-		$num_rows = count($row);
-		if ($num_rows == 0){
-			$_SESSION["admin"] = "true";
-		}else{
-			$_SESSION["admin"] = "false";
+	if (!$conn) {
+        $res1 = pg_get_result($conn);
+        die("Connection failed: ".pg_result_error($res1));
+    }
+	
+    $isAdmin = false;
+
+    $set = "SET search_path to TOKOKEREN";
+    $result = pg_query($conn, $set);
+    $result1 = pg_query($conn, "SELECT email, password, nama FROM PENGGUNA WHERE email = '$email'");
+
+    $result2 = pg_query($conn, "SELECT count(email) AS id FROM PELANGGAN WHERE email= '$email'");
+
+    $role = pg_fetch_array($result2);
+        echo $role['id'];
+
+    if($role['id'] == '0') {
+      $isAdmin = true;
+    }
+
+    $row = pg_fetch_array($result1);
+    
+      if($row["email"]==$email && $row["password"]==$pass)  {
+        if($isAdmin) {
+          $_SESSION['isAdmin'] = "true";
+        }else{
+			$_SESSION['isAdmin'] = "false";
 		}
-	}
+          echo"Login successful!";
+          $_SESSION['username'] = $row["nama"];
+		   $_SESSION['email'] = $row["email"];
+          header("Location: index.php");
+        } else {
+			header("Location:login.php?registered=no");
+        }
+    
 	
 	pg_close($conn);
 }
 
-function user_logout(){
-	if(!isset($_SESSION)){
-		echo "Not logged in";
-		return false;
-	}
+function logout(){
 	session_destroy();
+	header("Location: index.php");
 }
 
 ?>

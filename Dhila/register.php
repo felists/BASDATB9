@@ -2,7 +2,7 @@
 	session_start();
 		function connectDB(){
 			// Create connection
-			$dbconn = pg_connect("host=localhost port=5432 dbname=fadhilahkhairatun user=postgres password=DhilaKaha09091997");
+			$dbconn = pg_connect("host=localhost port=5432 dbname=postgres user=postgres password=");
 			
 			// Check connection
 			if (!$dbconn) {

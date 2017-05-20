@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+ session_start();
+	
+	
+?><!DOCTYPE html>
 <html>
 <head>
 	<title>TokoKeren</title>
@@ -16,11 +20,15 @@
 	      <a class="nav-item">
 	        <h3>TokoKeren</h3>
 	      </a>
-	      <a class="nav-item is-tab is-hidden-mobile"  href="index.php">Home</a>
+		 <?php if(isset($_SESSION["username"])){ ?>
+        
+	      <a class="nav-item is-tab is-hidden-mobile ">Home</a>
+		   <?php if( $_SESSION['isAdmin'] == "false"){ ?>
 	      <a class="nav-item is-tab is-hidden-mobile">Produk</a>
-	      <a class="nav-item is-tab is-hidden-mobile is-active" href="transaksi-pulsa.php">Transaksi</a>
-		  <a class="nav-item is-tab is-hidden-mobile" href="admin-jasa.php">Admin</a>
-		
+	      <a class="nav-item is-tab is-hidden-mobile is-active" href="transaksi-pulsa.php">Transaksi</a> 
+		   <?php } if( $_SESSION['isAdmin'] == "true"){ ?>
+		   <a class="nav-item is-tab is-hidden-mobile" href="admin-jasa.php">Admin</a>
+		 <?php } }?>
 		</div>
 	    <span class="nav-toggle">
 	      <span></span>
@@ -35,7 +43,7 @@
 	        </figure>
 	        Profile
 	      </a>
-	      <a class="nav-item is-tab" href="register.html">Daftar</a>
+			 <a class="nav-item is-tab"  href='logout.php'>Logout</a>
 	    </div>
 	  </div>
 	</nav>

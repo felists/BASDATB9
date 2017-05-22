@@ -63,6 +63,9 @@
 	          <li class="is-active" >
 	            <a href="admin-jasa.php">Jasa</a>
 	          </li>
+	          <li>
+	            <a href="admin-addItem.php"> Tambah Item </a>
+	          </li>
 	        </ul>
 	        </nav>
 	      </div>
@@ -131,7 +134,7 @@
 </form>
 	</div>
 	
-	</section>
+</section>
 </body>
 </html>
 

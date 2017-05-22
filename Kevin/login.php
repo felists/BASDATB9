@@ -31,7 +31,7 @@
 	      </a>
 		</div>
 	    <div class="nav-right nav-menu">
-	      <a class="nav-item is-tab"  href='register.html'>Daftar</a>
+	      <a class="nav-item is-tab"  href='register.php'>Daftar</a>
 	    </div>
 	  </div>
 	</nav>

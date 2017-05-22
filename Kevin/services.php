@@ -28,7 +28,7 @@ switch($_POST['submit']) {
 }
 
 function get_main_category(){
-	$string = "host=localhost port=5432 dbname=postgres user=postgres password=";
+	$string = "host=localhost port=5432 dbname=  user=postgres password=DhilaKaha0909197";
 	$conn = pg_connect($string);
 	
 	$sql = "SELECT * FROM tokokeren.kategori_utama;"; 
@@ -45,7 +45,7 @@ function get_main_category(){
 }
 
 function get_sub_category($kode){
-	$string = "host=localhost port=5432 dbname=postgres user=postgres password=";
+	$string = "host=localhost port=5432 dbname=  user=postgres password= ";
 	$conn = pg_connect($string);
 	
 	$sql = "SELECT * FROM tokokeren.sub_kategori WHERE kode_kategori = '$kode' ;"; 
@@ -62,7 +62,7 @@ function get_sub_category($kode){
 }
 	
 function create_jasa_kirim($nama,$lama,$tarif){
-	$string = "host=localhost port=5432 dbname=postgres user=postgres password=";
+	$string = "host=localhost port=5432 dbname=  user=postgres password= ";
 	$conn = pg_connect($string);
 	
 	$sql = "INSERT INTO tokokeren.jasa_kirim(nama,lama_kirim,tarif) VALUES ('$nama','$lama','$tarif')"; 
@@ -81,7 +81,7 @@ function create_jasa_kirim($nama,$lama,$tarif){
 }
 
 function create_promo($awal,$akhir,$kode,$kategori,$subkategori,$deskripsi){
-	$string = "host=localhost port=5432 dbname=postgres user=postgres password=";
+	$string = "host=localhost port=5432 dbname=  user=postgres password= ";
 	$conn = pg_connect($string);
 	
 	$id = substr(md5(microtime()),rand(0,26),6);
@@ -99,7 +99,7 @@ function create_promo($awal,$akhir,$kode,$kategori,$subkategori,$deskripsi){
 }
 
 function create_ulasan($produk,$rating,$komentar){
-	$string = "host=localhost port=5432 dbname=postgres user=postgres password=";
+	$string = "host=localhost port=5432 dbname=  user=postgres password= ";
 	$conn = pg_connect($string);
 	$email = $_SESSION["email"];
 	$tanggal = date("m-d-Y");
@@ -111,7 +111,7 @@ function create_ulasan($produk,$rating,$komentar){
 
 
 function login($email, $pass){
-	$string = "host=localhost port=5432 dbname=postgres user=postgres password=";
+	$string = "host=localhost port=5432 dbname=  user=postgres password= ";
 	$conn = pg_connect($string);
 	if (!$conn) {
         $res1 = pg_get_result($conn);
@@ -143,7 +143,7 @@ function login($email, $pass){
 		}
           echo"Login successful!";
           $_SESSION['username'] = $row["nama"];
-		   $_SESSION['email'] = $row["email"];
+		  $_SESSION['email'] = $row["email"];
           header("Location: index.php");
         } else {
 			header("Location:login.php?registered=no");
